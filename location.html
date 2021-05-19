@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>mothusi</title>
+        <style>
+       body {
+        
+    background-image: url("https://images.unsplash.com/photo-1616428846121-864f3cbf8cac?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60")
+  
+  margin:0;
+  padding: 15px;
+  color: #222;
+  font: normal normal normal 1rem/1.6 Nunito Sans, Helvetica, Arial, sans-serif;
+}
+div {margin-bottom: 10px;}
+button {
+  background-color: #3da4ab;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  font-size: 1.05rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0e9aa7;
+}
+
+  /*Bringing visual appeal to our responsive 'navbar' project*/
+  body {
+    background-image: url("https://images.unsplash.com/photo-1616428846121-864f3cbf8cac?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60")
+  }
+  /*Centering our h1*/
+  h1 {
+    text-align: center;
+  }
+  /*Attaching the flex-box to our listed items, giving the links space within that box, and centering the text*/
+  ul {
+    display: flex;
+    list-style-type: none;
+    margin: 50px 100px;
+    font: 17px helvetica;
+    text-align: center;
+  }
+  /*Giving our li a background and height-space*/
+  li {
+    flex: 1;
+    height: 66px;
+    background: #1a1a1a;
+  }
+  /*Making the li's inside of our navbar interactive with color change and padding/margin*/
+  li:hover {
+    flex:1.1;
+    transition:all .2s ease;
+    background: #333333;
+  }
+  /*Styling and sizing our link/letters while giving them a block-level, 'click' ability*/
+  a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    padding: 23px;
+  }
+  /*Giving the middle, border-lines a color and size*/
+  .navigation li:not(:first-child){
+      border-left: 2px solid #ecf0f1;
+  }
+        </style>
+    </head>
+    <body>
+        <h1>PERMISSION BUTTON</h1>
+        <nav>
+         <ul class="navigation">
+           <li><a href="#">HOME</a></li>
+           <li><a href="upload.html">UPLOAD</a></li>
+           <li><a href="micro.html">MICROPHONE</a></li>
+           <li><a href="noti.html">NOTIFICATION</a></li>
+           <li><a href="location.html">LOCATION</a></li>
+         </ul>
+        <div style="color:gold;">Latitude: <span id="lat"></span></div>
+        <div style="color:gold;">Longitude: <span id="lon"></span></div>
+        <div>
+          <button id="currPos">Get Current Position</button>
+        </div>
+        <div id="error"></div> 
+            <script>
+ document.addEventListener("DOMContentLoaded", event => {
+  let $ = document.querySelector.bind(document);
+  let options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+  
+  $("#currPos").addEventListener("click", getLocation);
+  
+  function getLocation() {
+    let geolocation = navigator.geolocation;
+    if (geolocation) {
+      geolocation.getCurrentPosition(onGeoSuccess, onGeoError, options);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+  
+  function onGeoSuccess(position) {
+    $("#lat").innerHTML = position.coords.latitude;
+    $("#lon").innerHTML = position.coords.longitude;
+  }
+  
+  function onGeoError(error) {
+    let detailError;
+    
+    if(error.code === error.PERMISSION_DENIED) {
+      detailError = "User denied the request for Geolocation.";
+    } 
+    else if(error.code === error.POSITION_UNAVAILABLE) {
+      detailError = "Location information is unavailable.";
+    } 
+    else if(error.code === error.TIMEOUT) {
+      detailError = "The request to get user location timed out."
+    } 
+    else if(error.code === error.UNKNOWN_ERROR) {
+      detailError = "An unknown error occurred."
+    }
+    
+    $("#error").innerHTML = `Error: ${detailError}`;
+  }
+});
+            </script>
+    </body>
+</html>

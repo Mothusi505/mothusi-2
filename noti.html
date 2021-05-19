@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>notification</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link href="https://fonts.googleapis.com/css2?family=Recursive&display=swap" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous"></script>
+<style>
+  
+/*Bringing visual appeal to our responsive 'navbar' project*/
+body {
+    background-image: url("https://images.unsplash.com/photo-1616428846121-864f3cbf8cac?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60")
+  }
+  /*Centering our h1*/
+  h1 {
+    text-align: center;
+  }
+  /*Attaching the flex-box to our listed items, giving the links space within that box, and centering the text*/
+  ul {
+    display: flex;
+    list-style-type: none;
+    margin: 50px 100px;
+    font: 17px helvetica;
+    text-align: center;
+  }
+  /*Giving our li a background and height-space*/
+  li {
+    flex: 1;
+    height: 66px;
+    background: #1a1a1a;
+  }
+  /*Making the li's inside of our navbar interactive with color change and padding/margin*/
+  li:hover {
+    flex:1.1;
+    transition:all .2s ease;
+    background: #333333;
+  }
+  /*Styling and sizing our link/letters while giving them a block-level, 'click' ability*/
+  a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    padding: 23px;
+  }
+  /*Giving the middle, border-lines a color and size*/
+  .navigation li:not(:first-child){
+      border-left: 2px solid #ecf0f1;
+  }
+
+  
+  .item {
+  position: relative;
+  border-radius: 1rem;
+  background: #ddd;
+  box-shadow: inset 0 0 5em rgba(0,0,0,0.3);
+  width: 10em;
+  height: 10em;
+  margin: 8rem auto 2rem auto;
+}
+
+.unseen-count {
+  width: 3rem;
+  height: 3rem;
+  background: #2092c3;
+  border-radius: 50%;
+  top: -0.5rem;
+  left: -0.5rem;
+  position: absolute;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  text-align: center;
+  font-size: 1.8rem;
+  font-family: sans-serif;
+  color: #fff;
+  line-height: 3rem;
+}
+
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  7%  { transform: translateY(-1.5rem); }
+  10%  { transform: translateY(0); }
+  15% { transform: translateY(-0.7rem); }
+  18% { transform: translateY(0); }
+  21% { transform: translateY(-0.3rem); }
+  23% { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+.unseen-count-animation {
+  animation-name: bounce;
+  animation-timing-function: ease;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+.controls {
+  text-align: center;
+}
+
+.controls > .add {
+  background: #ccc;
+  border: 2px solid #777;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+</style>
+</head>
+<body>
+    <h1>PERMISSION BUTTON</h1>
+    <div class="container">
+        <nav class="nav">
+            <li><a href="home.html"></i>HOME</a></li>
+          <li><a href="micro.html"></i>MICROPHONE</a></li>
+          <li><a href="upload.html"></i>UPLOAD</a></li>
+          <li><a href="noti.html"></i>NOTIFICATION</a></li>
+          <li><a href="location.html"></i>LOCATION</a></li>
+   
+        </nav>
+      </div>
+    <div class="item">
+        <div class="unseen-count" id="unseen_count">0</div>
+      </div>
+      <div class="controls">
+        <button class="add" id="button_add" onclick="actionAdd()">Add +1</button>
+      </div>
+
+<script>
+ const countIndicator = document.getElementById("unseen_count");
+let currentCount = 0;
+
+function actionAdd() {
+  currentCount++;
+  countIndicator.innerText = currentCount;
+  countIndicator.classList.remove('unseen-count-animation');
+  setTimeout(function() {
+    countIndicator.classList.add('unseen-count-animation');
+  }, 50)
+}
+
+
+</script>
+</body>
+</html>
